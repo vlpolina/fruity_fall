@@ -27,28 +27,40 @@
   justify-content: center;
 }
 
-.timer {
+.outputs {
   background-color: #ffffff;
   padding: 12px 24px;
   font-size: 20px;
   border-radius: 4px;
-  height: 70px;
+  height: 60px;
   align-content: center;
+  box-shadow: 0px 0px 50px #ffececd6;
 }
 
-.score {
+.pause {
   background-color: #ffffff;
   padding: 12px 24px;
   font-size: 20px;
   border-radius: 4px;
-  height: 70px;
+  height: 60px;
   align-content: center;
+  box-shadow: 0px 0px 50px #ffececd6;
+  border: none;
+}
+
+.pause:hover {
+  background-color: #ebebeb;
+}
+
+.pause:active {
+  background-color: #d2d2d2;
 }
 
 .currentFruit {
   background-color: #ffffff;
-  padding: 12px;
+  padding: 8px;
+  box-shadow: 0px 0px 50px #ffececd6;
   border-radius: 4px;
-  width: 70px;
-  height: 70px;
+  width: 60px;
+  height: 60px;
 }

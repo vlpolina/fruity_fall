@@ -9,6 +9,8 @@ interface IFruit {
   img: string
 }
 
+// music
+
 export const Field = () => {
   const [currentFruit, setCurrentFruit] = useState<IFruit>(fruits[0])
 

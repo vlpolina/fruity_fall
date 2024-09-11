@@ -2,6 +2,7 @@ import { useRouter } from 'next/router'
 import { useState } from 'react'
 
 import { Cross } from '@shared/Cross'
+import { Trees } from '@shared/Trees/Trees'
 
 import cls from './Start.module.scss'
 
@@ -15,6 +16,7 @@ export const Start = () => {
 
   return (
     <div className={cls.bg}>
+      <Trees />
       <div className={cls.wrapper}>
         <p className={cls.title}>Fruity Fall</p>
 
@@ -64,7 +66,7 @@ export const Start = () => {
             </div>
             <div className={cls.rules}>
               <p>
-                Игра заключается в том, чтобы ловить мышкой-корзинкой падающие фрукты. <br />
+                Игра заключается в том, чтобы ловить мышкой падающие фрукты. <br />
                 После клика по кнопке &quot;Начать игру&quot; вы попадёте в фруктовый сад, где
                 пришло время собирать урожай. В верхнем окошке будет отображаться тот фрукт, который
                 нужно собирать сейчас. Вы должны набрать максимальное количество баллов, кликая на

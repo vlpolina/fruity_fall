@@ -20,6 +20,11 @@ export const GameScreen = () => {
   const [timerValue, setTimerValue] = useState<string>('00:00')
   const [score, setScore] = useState<number>(0)
   const [currentFruit, setCurrentFruit] = useState<IFruit>(fruits[0])
+  const [pause, setPause] = useState<boolean>(false)
+
+  const changePlaying = () => {
+    setPause(!pause)
+  }
 
   // setInterval({
   //   setTimerValue()
@@ -31,12 +36,13 @@ export const GameScreen = () => {
         <p className={cls.title}>Fruity Fall</p>
 
         <div className={cls.control}>
+          <div className={cls.outputs}>Игрок: {name}</div>
+          <div className={cls.outputs}>Очки: {score}</div>
           <img className={cls.currentFruit} src={currentFruit.img} alt={currentFruit.id} />
-          <div className={cls.timer}>{timerValue}</div>
-          <div className={cls.timer}>{name}</div>
-          <button className={cls.timer}>pause</button>
-
-          <div className={cls.score}>Очки: {score}</div>
+          <div className={cls.outputs}>{timerValue}</div>
+          <button className={cls.pause} onClick={() => changePlaying()}>
+            {pause ? 'Пауза' : 'Играть'}
+          </button>
         </div>
 
         <Field />

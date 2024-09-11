@@ -1,7 +1,7 @@
-import { GameScreen } from '@features/Game/GameScreen/GameScreen'
+import { Game } from '@features/Game/'
 
 const GamePage = () => {
-  return <GameScreen />
+  return <Game />
 }
 
 export default GamePage

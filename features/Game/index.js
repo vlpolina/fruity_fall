@@ -1,1 +1,1 @@
-export { GameScreen } from './GameScreen/GameScreen'
+export { GameScreen as Game } from './GameScreen/GameScreen'
