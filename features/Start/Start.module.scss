@@ -6,6 +6,7 @@
   background-image: url('../../public/img/flyibng_leaves.gif');
   background-repeat: no-repeat;
   background-position: 100% 0%;
+  padding: 12px;
 }
 
 .bg {
@@ -20,6 +21,10 @@
   font-weight: 800;
   color: #343333;
   text-shadow: 4px 4px 4px #585858;
+
+  @media (max-width: 768px) {
+    margin-top: 50px;
+  }
 }
 
 .inputs {
@@ -40,7 +45,6 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
-  width: 700px;
 }
 
 .button {
@@ -117,6 +121,10 @@
   border: 2px solid #6b6b6b;
   border-radius: 4px;
   box-shadow: 5px 5px 50px 10px rgb(220, 220, 220);
+
+  @media (max-width: 768px) {
+    width: 100%;
+  }
 }
 
 .row {
@@ -143,6 +151,10 @@
   font-weight: 600;
   line-height: 16px;
   padding: 16px 16px 0;
+
+  @media (max-width: 768px) {
+    font-size: 16px;
+  }
 }
 
 .rules {
@@ -153,6 +165,10 @@
   display: flex;
   flex-direction: column;
   gap: 8px;
+
+  @media (max-width: 768px) {
+    font-size: 14px;
+  }
 }
 
 .ul {

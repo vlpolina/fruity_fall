@@ -17,6 +17,11 @@
   font-weight: 800;
   color: #343333;
   text-shadow: 4px 4px 4px #585858;
+
+  @media (max-width: 1092px) {
+    margin-top: 20px;
+    font-size: 30px;
+  }
 }
 
 .control {
@@ -35,6 +40,12 @@
   height: 60px;
   align-content: center;
   box-shadow: 0px 0px 50px #ffececd6;
+
+  @media (max-width: 1092px) {
+    height: 40px;
+    padding: 8px;
+    font-size: 18px;
+  }
 }
 
 .pause {
@@ -46,6 +57,12 @@
   align-content: center;
   box-shadow: 0px 0px 50px #ffececd6;
   border: none;
+
+  @media (max-width: 1092px) {
+    height: 40px;
+    padding: 8px;
+    font-size: 18px;
+  }
 }
 
 .pause:hover {
@@ -63,4 +80,10 @@
   border-radius: 4px;
   width: 60px;
   height: 60px;
+
+  @media (max-width: 1092px) {
+    height: 40px;
+    width: 40px;
+    padding: 4px;
+  }
 }

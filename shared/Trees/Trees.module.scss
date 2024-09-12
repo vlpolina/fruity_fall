@@ -5,6 +5,10 @@
   width: 100%;
   height: 220px;
   animation: moved 4s infinite ease-in-out;
+
+  @media (max-width: 768px) {
+    visibility: hidden;
+  }
 }
 
 .trees1 {
@@ -15,6 +19,10 @@
   width: 100%;
   height: 220px;
   animation: moved1 5s infinite ease-in-out;
+
+  @media (max-width: 768px) {
+    visibility: hidden;
+  }
 }
 
 .trees2 {
@@ -25,6 +33,10 @@
   width: 100%;
   height: 220px;
   animation: moved2 6s infinite ease-in-out;
+
+  @media (max-width: 768px) {
+    visibility: hidden;
+  }
 }
 
 @keyframes moved1 {

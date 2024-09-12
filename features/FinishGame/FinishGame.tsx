@@ -20,7 +20,7 @@ export const FinishGame = () => {
         <p>{score} очков!</p>
       </div>
       <div className={cls.play}>
-        <p>Что, понравилась игра? Тогда</p>
+        <p>Понравилась игра? Тогда</p>
         <button onClick={() => router.push('/')}>Играть ещё!</button>
       </div>
     </div>

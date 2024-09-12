@@ -14,18 +14,22 @@
   font-weight: 800;
   color: #343333;
   text-shadow: 4px 4px 4px #585858;
+
+  @media (max-width: 768px) {
+    font-size: 50px;
+  }
 }
 
 .gameOver {
   font-size: 40px;
   font-weight: 700;
   color: #5fb445;
-  text-decoration-line: underline;
-  text-decoration-style: dotted;
-  text-decoration-thickness: 5px;
-  text-decoration-color: #343333;
   text-shadow: 4px 4px 4px #585858;
   animation: gameOver 1s infinite ease-in-out;
+
+  @media (max-width: 768px) {
+    font-size: 30px;
+  }
 }
 
 @keyframes gameOver {
@@ -56,6 +60,11 @@
     padding: 4px 8px;
     text-shadow: none;
   }
+
+  @media (max-width: 768px) {
+    font-size: 18px;
+    padding: 8px;
+  }
 }
 
 .play {
@@ -71,31 +80,20 @@
   & > button {
     border: none;
     padding: 12px 24px;
-    background: linear-gradient(#5fb445, #fcfcfc, #679fff);
+    background-color: #fcfcfc;
     font-size: 16px;
     font-weight: 600;
     border-radius: 4px;
     box-shadow: 1px 1px 30px #dedede;
-    animation: button 2s infinite ease-in;
   }
 
   & > button:hover {
-    background: linear-gradient(#5fb445c3, #fcfcfcb1, #679fffa0);
+    background-color: #dfdfdf;
     cursor: pointer;
   }
-}
 
-@keyframes button {
-  0% {
-    background: linear-gradient(#5fb445, #fcfcfc, #679fff);
-    color: #000;
-  }
-  99% {
-    background: linear-gradient(#bdf6ab, #ffffff, #a2c4ff);
-    color: #4b4b4b;
-  }
-  100% {
-    background: linear-gradient(#5fb445, #fcfcfc, #679fff);
-    color: #000;
+  @media (max-width: 768px) {
+    font-size: 20px;
+    padding: 8px;
   }
 }
