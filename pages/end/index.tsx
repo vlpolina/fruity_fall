@@ -1,4 +1,4 @@
-import { FinishGame } from '@features/FinishGame/'
+import { FinishGame } from '@components/FinishGame/FinishGame'
 
 const FinishPage = () => {
   return <FinishGame />

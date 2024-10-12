@@ -194,9 +194,8 @@ module.exports = {
       },
       alias: [
         ['@root', './'],
-        ['@features', './features'],
+        ['@components', './components'],
         ['@pages', './pages'],
-        ['@shared', './shared'],
         ['@styles', './styles'],
         ['@icons', './public/img'],
       ],

@@ -1,8 +1,9 @@
 import { useRouter } from 'next/router'
 import { useState } from 'react'
 
-import { Cross } from '@shared/Cross'
-import { Trees } from '@shared/Trees/Trees'
+import { Cross } from '@components/Cross'
+import { Trees } from '@components/Trees/Trees'
+import Cookies from 'js-cookie'
 
 import cls from './Start.module.scss'
 
@@ -11,8 +12,14 @@ export const Start = () => {
 
   const [name, setName] = useState<string>('')
   const [fruitCount, setFruitCount] = useState<number>(10)
-  const [timer, setTimer] = useState<number>(90)
+  const [timer, setTimer] = useState<string>('')
   const [modal, setModal] = useState<boolean>(false)
+
+  const onSave = () => {
+    Cookies.set('user', name)
+    Cookies.set('timer', timer)
+    Cookies.set('fruitCount', fruitCount.toString())
+  }
 
   return (
     <div className={cls.bg}>
@@ -30,22 +37,23 @@ export const Start = () => {
             <input
               type="number"
               value={fruitCount}
-              onChange={(v) => Number(v.target.value) >= 0 && setFruitCount(Number(v.target.value))}
+              onChange={(v) => Number(v.target.value) > 0 && setFruitCount(Number(v.target.value))}
             />
           </div>
           <div className={cls.inputs}>
             <label>Значение таймера обратного отсчёта, секунд</label>
-            <input
-              type="number"
-              value={timer}
-              onChange={(v) => Number(v.target.value) >= 0 && setTimer(Number(v.target.value))}
-            />
+            <input type="time" value={timer} onChange={(v) => setTimer(v.target.value)} />
           </div>
 
           <button
             className={cls.button}
-            disabled={name === '' || fruitCount < 0 || timer < 0}
-            onClick={() => router.push('/game')}
+            disabled={
+              name === '' || fruitCount < 0 || timer.split(':').every((i) => Number(i) === 0)
+            }
+            onClick={() => {
+              router.push('/game')
+              onSave()
+            }}
           >
             Начать игру
           </button>

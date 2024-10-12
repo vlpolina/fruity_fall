@@ -10,8 +10,7 @@ module.exports = {
   importOrder: [
     '^(react/(.*)$)|^(react$)|^(react)|^(next/(.*)$)|^(next$)',
     '<THIRD_PARTY_MODULES>',
-    '^@features/(.*)$|^@pages/(.*)$|^@styles/(.*)$',
-    '^@shared/(.*)$',
+    '^@components/(.*)$|^@pages/(.*)$|^@styles/(.*)$',
     '^[./]((?!.module.scss).)*$',
     '^./(.*?).module.scss$',
   ],

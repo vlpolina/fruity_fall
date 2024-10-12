@@ -1,4 +1,4 @@
-import { Game } from '@features/Game/'
+import { Game } from '@components/Game/'
 
 const GamePage = () => {
   return <Game />

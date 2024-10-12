@@ -17,9 +17,8 @@
       {
         "root": ["./"],
         "alias": {
-          "@features": "./features",
+          "@components": "./components",
           "@pages": "./pages",
-          "@shared": "./shared",
           "@icons": "./public/img",
           "@styles": "./styles"
         }

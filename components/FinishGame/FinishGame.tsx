@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router'
 
-import { Trees } from '@shared/Trees/Trees'
+import { Trees } from '@components/Trees/Trees'
 
 import cls from './FinishGame.module.scss'
 

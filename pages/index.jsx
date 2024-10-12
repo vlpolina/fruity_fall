@@ -1,4 +1,4 @@
-import { Start } from '../features/Start'
+import { Start } from '../components/Start'
 
 const Home = () => {
   return <Start />
