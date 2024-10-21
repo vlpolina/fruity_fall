@@ -109,8 +109,6 @@ export const GameScreen = () => {
     <>
       <div className={cls.bg}>
         <div className={cls.wrapper}>
-          <p className={cls.title}>Fruity Fall</p>
-
           <div className={cls.control}>
             <div className={cls.outputs}>Игрок: {name}</div>
             <div className={cls.outputs}>Очки: {score}</div>
