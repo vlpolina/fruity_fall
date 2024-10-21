@@ -9,6 +9,7 @@
   transform: translateX(-50%);
   border-radius: 4px;
   overflow: hidden;
+  z-index: 0;
 
   @media (max-width: 1063px) {
     width: 100%;
@@ -21,16 +22,10 @@
   width: 40px;
   height: 40px;
   animation-name: fall;
-  /* animation-duration: 3s; */ // скорость падения фрукта
   animation-iteration-count: 1;
-  /*animation-play-state: paused;*/ // на паузу
-  /*animation-timing-function: cubic-bezier(
-    0.165,
-    0.84,
-    0.44,
-    1
-  );*/ // разная скорость падения на разной высоте
-  position: relative;
+  position: absolute;
+  z-index: 1;
+  cursor: pointer;
 }
 
 @keyframes fall {

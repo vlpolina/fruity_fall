@@ -1,7 +1,8 @@
-import { Dispatch, SetStateAction, useEffect, useState } from 'react'
+import { Dispatch, SetStateAction, useEffect } from 'react'
 
+import { createId } from '../modules/createId'
 import { fruits } from '../modules/fruits'
-import { IFruit, IFruitCur } from '../types'
+import { IFruit, IFruitCur, StatisticType } from '../types'
 
 import cls from './Field.module.scss'
 
@@ -12,9 +13,10 @@ interface IProps {
   setFallenFruits: Dispatch<SetStateAction<IFruit[]>>
   getRandomFruit: () => number
   fruitCount: number
+  setStatistics: Dispatch<SetStateAction<StatisticType[]>>
+  setClickedStatistics: Dispatch<SetStateAction<StatisticType[]>>
+  pause: boolean
 }
-
-// music
 
 export const Field = ({
   currentFruit,
@@ -23,97 +25,94 @@ export const Field = ({
   setFallenFruits,
   getRandomFruit,
   fruitCount,
+  setStatistics,
+  setClickedStatistics,
+  pause,
 }: IProps) => {
-  const [spawnTimeout, setSpawnTimeout] = useState(null)
+  const getRandomX = () => Math.floor(Math.random() * 980) // случайное положение по X
 
-  const getRandomX = () => {
-    return Math.floor(Math.random() * (650 - 40)) // 40 - ширина фрукта
-  }
-
-  const getRandomSpeed = () => {
-    return Math.random() * 5000 + 2000 // случайная скорость от 2 до 7 секунд
-  }
+  const getRandomSpeed = () => Math.random() * 500 + 500 // скорость падения
 
   const spawnFruit = () => {
-    const newFruit = getRandomFruit()
-    const newSpeed = getRandomSpeed()
-    setFallenFruits([
-      ...fallenFruits,
-      {
-        id: fruits[newFruit].id,
-        img: fruits[newFruit].img,
-        x: getRandomX(),
-        y: -40,
-        speed: newSpeed,
-        isFalling: true,
-      },
-    ])
-    return { id: fruits[newFruit].id, timeout: newSpeed }
+    const newFruitIndex = getRandomFruit()
+    const newFruit: IFruit = {
+      id: createId(),
+      name: fruits[newFruitIndex].name,
+      img: fruits[newFruitIndex].img,
+      x: getRandomX(),
+      y: -40,
+      speed: getRandomSpeed(),
+      isFalling: true,
+    }
+    setFallenFruits((prev) => [...prev, newFruit])
+    setStatistics((prevStatistics) => {
+      const updatedStatistics = prevStatistics.map((i) => {
+        if (i.id === newFruit.name) {
+          return { ...i, count: Number(i.count) + 1 }
+        } else {
+          return i
+        }
+      })
+      return updatedStatistics
+    })
   }
 
-  const intervalId = setInterval(() => {
-    if (fallenFruits.filter((fruit) => fruit.isFalling).length < fruitCount) {
-      spawnFruit()
-    }
-  }, 2000)
-
   useEffect(() => {
-    const handleSpawn = () => {
-      if (fallenFruits.filter((fruit) => fruit.isFalling).length < fruitCount) {
-        const { id, timeout } = spawnFruit()
-        setSpawnTimeout(
-          //@ts-expect-error ffff
-          setTimeout(() => {
-            setFallenFruits((prevFallenFruits) =>
-              prevFallenFruits.map((fruit) =>
-                fruit.id === id ? { ...fruit, isFalling: false } : fruit
-              )
-            )
-          }, timeout)
+    const intervalId = setInterval(() => {
+      if (!pause) {
+        setFallenFruits((prev) =>
+          prev
+            .map((fruit) => ({
+              ...fruit,
+              y: fruit.isFalling ? fruit.y + 1000 / fruit.speed : fruit.y,
+            }))
+            .filter((fruit) => fruit.y < window.innerHeight)
         )
+
+        if (fallenFruits.filter((fruit) => fruit.isFalling).length < fruitCount) {
+          spawnFruit()
+        }
       }
-    }
+    }, 10)
 
-    handleSpawn()
-
-    return () => {
-      //@ts-expect-error ffff
-      clearTimeout(spawnTimeout)
-    }
-  }, [fallenFruits, fruitCount])
-
-  useEffect(() => {
     return () => clearInterval(intervalId)
-  }, [])
+  }, [fallenFruits, fruitCount, pause])
 
-  // console.log(fallenFruits)
+  const handleFruitClick = (fruit: IFruit) => {
+    if (pause) return
+    setFallenFruits((prev) => prev.map((f) => (f.id === fruit.id ? { ...f, isFalling: false } : f)))
+    setScore((prev) => prev + (fruit.name === currentFruit.name ? 1 : -1))
+    setClickedStatistics((prevStatistics) => {
+      const updatedStatistics = prevStatistics.map((i) => {
+        if (i.id === fruit.name) {
+          return { ...i, count: Number(i.count) + 1 }
+        } else {
+          return i
+        }
+      })
+      return updatedStatistics
+    })
+    spawnFruit()
+  }
 
   return (
     <div className={cls.bg}>
-      {fallenFruits.map((fruit, index) => (
-        <img
-          key={index}
-          src={fruit.img}
-          className={cls.fruit}
-          draggable={false}
-          style={{
-            left: `${fruit.x}px`,
-            top: `${fruit.y}px`,
-            animationDuration: `${fruit.speed}ms`,
-            animationPlayState: fruit.isFalling ? 'running' : 'paused',
-          }}
-          onClick={() => {
-            if (fruit.id === currentFruit.id) setScore((prev) => prev + 1)
-            else setScore((prev) => prev - 1)
-            setFallenFruits(
-              fallenFruits.map((f) => {
-                if (f.id === fruit.id) f.isFalling = false
-                return f
-              })
-            )
-          }}
-        />
-      ))}
+      {fallenFruits.map(
+        (fruit) =>
+          fruit.isFalling && (
+            <img
+              key={fruit.id}
+              src={fruit.img}
+              className={cls.fruit}
+              draggable={false}
+              style={{
+                left: `${fruit.x}px`,
+                top: `${fruit.y}px`,
+              }}
+              onClick={() => handleFruitClick(fruit)}
+            />
+          )
+      )}
     </div>
   )
 }

@@ -1,9 +1,10 @@
 import { useRouter } from 'next/router'
 import { useState } from 'react'
 
+import Cookies from 'js-cookie'
+
 import { Cross } from '@components/Cross'
 import { Trees } from '@components/Trees/Trees'
-import Cookies from 'js-cookie'
 
 import cls from './Start.module.scss'
 

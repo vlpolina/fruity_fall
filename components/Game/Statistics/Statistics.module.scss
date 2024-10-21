@@ -1,0 +1,29 @@
+.wrapper {
+  position: absolute;
+  left: 50px;
+  top: 20%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 170px;
+}
+
+.fruit {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  background-color: #ffffff;
+  border-radius: 4px;
+  padding: 4px 8px;
+  align-items: center;
+  justify-content: center;
+
+  & > img {
+    height: 34px;
+    width: 34px;
+  }
+
+  & > p {
+    color: #000000;
+  }
+}
