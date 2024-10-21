@@ -11,19 +11,6 @@
   height: 100%;
 }
 
-.title {
-  margin-top: 16px;
-  font-size: 30px;
-  font-weight: 800;
-  color: #343333;
-  text-shadow: 4px 4px 4px #585858;
-
-  @media (max-width: 1092px) {
-    margin-top: 20px;
-    font-size: 30px;
-  }
-}
-
 .control {
   display: flex;
   flex-direction: row;
